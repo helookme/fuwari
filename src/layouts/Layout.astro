@@ -70,6 +70,7 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!DOCTYPE html>
@@ -77,7 +78,7 @@ const bannerOffset =
 	  data-overlayscrollbars-initialize
 >
 	<head>
-
+    <ViewTransitions />
 		<title>{pageTitle}</title>
 
 		<meta charset="UTF-8" />
