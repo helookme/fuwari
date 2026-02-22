@@ -18,7 +18,7 @@ draft: false
   - 会和豆包聊天的脑子
 # 开始吧！
   请先fork仓库:https://github.com/saicaca/fuwari
-  ![此图片无法显示](https://image.91787878.xyz/image/fuwari1.jpg)
+  ![此图片无法显示](https://image.91787878.xyz/img/fuwari1.jpg)
   安装以下工具
     Git:[git-scm.com]()
     node.js:网上自己搜
@@ -46,7 +46,7 @@ draft: false
  - `git config --global user.name "Github用户名"`
  - `git config --global user.email "你注册GitHub的邮箱"`
  - 更改为ssh `git remote set-url origin git@github.com:xxx/xxx`
-   ![此图片无法显示](https://image.91787878.xyz/image/fuwari2.jpg)
+   ![此图片无法显示](https://image.91787878.xyz/img/fuwari2.jpg)
 
   但是,上传是需要秘钥的,不然GitHub无法验证你的身份,你如果没有配置过是无法上传的.
   - 在Git中输入命令 `$ssh-keygen -t rsa -C "你注册GitHub的邮箱"`它会自动生成一个秘钥并保存在 `C:\User\.ssh`
