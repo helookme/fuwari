@@ -54,6 +54,7 @@ export const profileConfig: ProfileConfig = {
 	links: [
 	    {
 			name: "QQ",
+			icon: "fa6-brands:qq",
 			url: "https://qm.qq.com/q/DY8ObVCg48", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
