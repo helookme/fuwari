@@ -1,5 +1,5 @@
 // src/data/frend-links.ts
-export const frendLinks = [
+export const friends = [
   {
     name: "AkiNard Blog",
     url: "https://blog.91787878.xyz",
