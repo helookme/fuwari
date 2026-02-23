@@ -1,0 +1,7 @@
+html, body {
+  background-image: url('https://api.komll.com/images'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
