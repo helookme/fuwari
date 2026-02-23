@@ -201,22 +201,21 @@ const bannerOffset =
 	}
 }
 
-/* ===== 新增全局背景图样式 ===== */
+/* 全屏背景图（使用你的 API） */
 html, body {
-	background-image: url('https://api.komll.com/images');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	margin: 0;
-	padding: 0;
+  background-image: url('https://api.komll.com/images');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
 }
 
-/* 可选：让主要内容区域半透明，使背景透出（可根据需要调整透明度） */
+/* 主要内容区域半透明遮罩（可调节透明度） */
 main, .content-wrapper, article {
-	background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色遮罩，增强文字可读性 */
+  background-color: rgba(0, 0, 0, 0.3); /* 0.3 表示 30% 黑色，数字越小越透明 */
 }
-/* ===== 结束 ===== */
 </style>
 
 <script>
