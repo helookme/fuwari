@@ -6,4 +6,10 @@ export const friends = [
     avatar: "https://image.91787878.xyz/img/skyceria.jpg",
     description: "其实就是本站啦~",
   },
+    {
+    name: "依凌の手册",
+    url: "https://blog.hanahime.online",
+    avatar: "https://blog.hanahime.online/upload/siteImg/siteFavicon.png",
+    description: "某个笨蛋的站点",
+  },
 ];
