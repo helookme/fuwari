@@ -3,8 +3,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import ConfigCarrier from "../components/ConfigCarrier.astro";
-import NavBar from "../components/Navbar.astro";
+import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -71,7 +70,6 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
-import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!DOCTYPE html>
@@ -79,7 +77,7 @@ import { ViewTransitions } from 'astro:transitions';
 	  data-overlayscrollbars-initialize
 >
 	<head>
-    <ViewTransitions />
+
 		<title>{pageTitle}</title>
 
 		<meta charset="UTF-8" />
@@ -154,7 +152,6 @@ import { ViewTransitions } from 'astro:transitions';
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
-		<NavBar />
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
@@ -194,24 +191,6 @@ import { ViewTransitions } from 'astro:transitions';
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
 	}
-}
-
-/* 新增渐变色背景 */
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  background-attachment: fixed;
-  min-height: 100vh;
-}
-
-/* 让卡片背景半透明，透出渐变背景 */
-.card-base {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(10px);
-}
-
-/* 暗色模式适配 */
-.dark .card-base {
-  background: rgba(0, 0, 0, 0.8) !important;
 }
 </style>
 
@@ -413,8 +392,6 @@ const setup = () => {
 		document.documentElement.style.setProperty('--content-delay', '0ms')
 
 		// prevent elements from overlapping the navbar
-		// 注释掉自动隐藏导航栏的逻辑
-		/*
 		if (!bannerEnabled) {
 			return
 		}
@@ -426,7 +403,6 @@ const setup = () => {
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
 			navbar.classList.add('navbar-hidden')
 		}
-		*/
 	})
 	window.swup.hooks.on('content:replace', initCustomScrollbar)
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
@@ -510,14 +486,11 @@ function scrollFunction() {
 			bannerHeight = BANNER_HEIGHT_HOME
 		}
 		let threshold = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
-		// 注释掉自动隐藏导航栏的逻辑
-		/*
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
 			navbar.classList.add('navbar-hidden')
 		} else {
 			navbar.classList.remove('navbar-hidden')
 		}
-		*/
 	}
 }
 window.onscroll = scrollFunction
