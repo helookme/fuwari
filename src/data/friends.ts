@@ -9,7 +9,7 @@ export const friends = [
     {
     name: "依凌の手册",
     url: "https://blog.hanahime.online",
-    avatar: "https://blog.hanahime.online/upload/siteImg/siteFavicon.png",
+    avatar: "https://image.91787878.xyz/img/friend1.png",
     description: "某个笨蛋的站点",
   },
 ];
