@@ -101,7 +101,17 @@ function loadButtonScript() {
     }
 }
 
+// 首次加载执行
 loadButtonScript();
+
+// SPA 切换后重新执行
+if (window.swup) {
+    window.swup.hooks.on('page:view', loadButtonScript);
+} else {
+    document.addEventListener('swup:enable', () => {
+        window.swup.hooks.on('page:view', loadButtonScript);
+    });
+}
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
