@@ -4,6 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
+import NavBar from "@components/NavBar.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -153,6 +154,7 @@ import { ViewTransitions } from 'astro:transitions';
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
+		<NavBar />
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
