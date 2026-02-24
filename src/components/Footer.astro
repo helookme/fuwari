@@ -73,15 +73,24 @@ const currentYear = new Date().getFullYear();
         })();
     </script>
     <!-- ===== 结束 ===== -->
-<script>
-  atOptions = {
-    'key' : 'a6c478fe233bd5ec2e2dc37de5088a9e',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/a6c478fe233bd5ec2e2dc37de5088a9e/invoke.js">
-</script>
+
+    <!-- ===== 广告位（修正版） ===== -->
+    <div class="ad-footer" style="margin-top: 1.5rem; text-align: center; width: 100%;">
+        <!-- 广告脚本（已添加 data-astro-reload 确保 Swup 切换后重新执行） -->
+        <script data-astro-reload>
+            atOptions = {
+                'key' : 'a6c478fe233bd5ec2e2dc37de5088a9e',
+                'format' : 'iframe',
+                'height' : 300,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script data-astro-reload src="https://www.highperformanceformat.com/a6c478fe233bd5ec2e2dc37de5088a9e/invoke.js"></script>
+        
+        <!-- 备用：如果 iframe 没有加载，显示一个简单提示（可选） -->
+        <noscript>您的浏览器不支持 JavaScript，无法显示广告。</noscript>
+    </div>
+    <!-- ===== 广告位结束 ===== -->
+    
 </div>
