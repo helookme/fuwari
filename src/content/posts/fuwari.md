@@ -2,6 +2,7 @@
 title: Fuwari博客搭建教程
 published: 2026-02-19
 description: "?"
+image: https://image/91787878.xyz/posts/fuwari.png
 tags:
   - Fuwari
   - 搭建
