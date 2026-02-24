@@ -1,5 +1,4 @@
 ---
-
 import { profileConfig } from "../config";
 import { url } from "../utils/url-utils";
 
@@ -19,4 +18,28 @@ const currentYear = new Date().getFullYear();
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
     </div>
     <a href="https://icp.gov.moe/?keyword=20260130" target="_blank">萌ICP备20260130号</a>
+
+    <!-- ===== CDN节点徽章 ===== -->
+    <div id="myCdnBadge" style="background: rgba(255,255,240,0.7); backdrop-filter: blur(4px); border-radius: 30px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; border: 1px solid rgba(0,0,0,0.1); margin: 10px 0;">
+        <span style="font-size: 18px;">📡</span>
+        <span id="cdnText">正在检测节点...</span>
+    </div>
+    
+    <script>
+        // 获取CDN节点信息并显示
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+                const cdnText = document.getElementById('cdnText');
+                let location = data.country_name || '未知';
+                if (data.city) location = data.city + ', ' + location;
+                const org = data.org || '未知运营商';
+                cdnText.innerHTML = `CDN节点：${location}<br><small>${org}</small>`;
+            })
+            .catch(() => {
+                document.getElementById('cdnText').innerText = 'CDN节点：未知';
+            });
+    </script>
+    <!-- ===== 结束 ===== -->
+    
 </div>
