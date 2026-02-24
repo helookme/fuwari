@@ -74,14 +74,24 @@ const currentYear = new Date().getFullYear();
     </script>
     <!-- ===== 结束 ===== -->
 
-   <script>
-  atOptions = {
-    'key' : 'e9a6543f91063a5b9339dcf7318ed52c',
-    'format' : 'iframe',
-    'height' : 60,
-    'width' : 468,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/e9a6543f91063a5b9339dcf7318ed52c/invoke.js"></script>
+    <!-- ===== 广告位（确保加载） ===== -->
+    <div style="margin-top: 1.5rem; text-align: center; width: 100%; overflow-x: auto;">
+        <!-- 广告配置脚本 -->
+        <script data-astro-reload>
+            atOptions = {
+                'key' : 'e9a6543f91063a5b9339dcf7318ed52c',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <!-- 广告加载脚本 -->
+        <script data-astro-reload src="https://www.highperformanceformat.com/e9a6543f91063a5b9339dcf7318ed52c/invoke.js"></script>
+        
+        <!-- 备用提示（如果用户禁用JS） -->
+        <noscript>您的浏览器不支持 JavaScript，无法显示广告。</noscript>
+    </div>
+    <!-- ===== 广告位结束 ===== -->
+    
 </div>
