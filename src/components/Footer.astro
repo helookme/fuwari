@@ -18,62 +18,6 @@ const currentYear = new Date().getFullYear();
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
     </div>
     <a href="https://icp.gov.moe/?keyword=20260130" target="_blank">萌ICP备20260130号</a>
-
-    <!-- ===== CDN节点徽章（稳定版） ===== -->
-    <div id="myCdnBadge" style="background: rgba(255,255,240,0.7); backdrop-filter: blur(4px); border-radius: 30px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; border: 1px solid rgba(0,0,0,0.1); margin: 10px 0;">
-        <span style="font-size: 18px;">📡</span>
-        <span id="cdnText">正在检测节点...</span>
-    </div>
-    
-    <script>
-        // 获取CDN节点信息（自动切换备用API）
-        (function() {
-            const cdnText = document.getElementById('cdnText');
-            
-            // 尝试多个API，直到成功
-            function fetchWithFallback(apiIndex) {
-                const apis = [
-                    {
-                        url: 'https://api.ip.sb/geoip',
-                        parse: (data) => {
-                            let location = data.country || '未知';
-                            if (data.city) location = data.city + ', ' + location;
-                            const org = data.isp || '未知运营商';
-                            return `CDN节点：${location}<br><small>${org}</small>`;
-                        }
-                    },
-                    {
-                        url: 'https://ipapi.co/json/',
-                        parse: (data) => {
-                            let location = data.country_name || '未知';
-                            if (data.city) location = data.city + ', ' + location;
-                            const org = data.org || '未知运营商';
-                            return `CDN节点：${location}<br><small>${org}</small>`;
-                        }
-                    }
-                ];
-                
-                if (apiIndex >= apis.length) {
-                    cdnText.innerText = 'CDN节点：未知';
-                    return;
-                }
-                
-                fetch(apis[apiIndex].url)
-                    .then(res => res.json())
-                    .then(data => {
-                        cdnText.innerHTML = apis[apiIndex].parse(data);
-                    })
-                    .catch(() => {
-                        // 当前API失败，尝试下一个
-                        fetchWithFallback(apiIndex + 1);
-                    });
-            }
-            
-            fetchWithFallback(0);
-        })();
-    </script>
-    <!-- ===== 结束 ===== -->
-
     <!-- ===== 广告位（确保加载） ===== -->
     <div style="margin-top: 1.5rem; text-align: center; width: 100%; overflow-x: auto;">
         <!-- 广告配置脚本（已添加 data-astro-reload） -->
