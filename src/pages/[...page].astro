@@ -16,14 +16,14 @@ const len = page.data.length;
 ---
 
 <MainGridLayout>
-    <!-- ===== 醒目公告卡片（纯标题+描述） ===== -->
+    <!-- ===== 醒目公告卡片（乳白背景） ===== -->
     <div class="announcement-block">
         <div class="announcement-content">
             <h2 class="announcement-title">
                 欢迎访问AkiNard Blog！
             </h2>
             <p class="announcement-description">
-                请您关闭广告拦截器，感谢您的支持与配合！
+                请您关闭您的广告过滤器(不会影响浏览)，感谢您的支持。
             </p>
         </div>
     </div>
@@ -34,28 +34,33 @@ const len = page.data.length;
 </MainGridLayout>
 
 <style>
-    /* 公告卡片样式 - 简洁版，无多余信息 */
+    /* 公告卡片样式 - 乳白背景，适配深色模式 */
     .announcement-block {
         margin-bottom: 2rem;
         border-radius: 16px;
         overflow: hidden;
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        background: rgba(255, 255, 240, 0.7); /* 乳白半透明 */
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        color: white;
+        color: #333;
     }
 
     .dark .announcement-block {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        background: rgba(30, 30, 30, 0.8); /* 深色模式深灰半透明 */
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #f0f0f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .announcement-block:hover {
         transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
     .dark .announcement-block:hover {
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     }
 
     .announcement-content {
@@ -64,17 +69,17 @@ const len = page.data.length;
 
     .announcement-title {
         font-size: 1.4rem;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 1.4;
         margin: 0 0 0.75rem 0;
-        color: white;
+        color: inherit;
     }
 
     .announcement-description {
         font-size: 1rem;
         line-height: 1.6;
         margin: 0;
-        opacity: 0.9;
+        opacity: 0.8;
         max-width: 80%;
     }
 
