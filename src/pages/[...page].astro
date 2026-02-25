@@ -10,14 +10,84 @@ export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
 	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
-// https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
-
 const len = page.data.length;
 ---
 
 <MainGridLayout>
+    <!-- ===== 醒目公告卡片（纯标题+描述） ===== -->
+    <div class="announcement-block">
+        <div class="announcement-content">
+            <h2 class="announcement-title">
+                欢迎访问AkiNard Blog！
+            </h2>
+            <p class="announcement-description">
+                请您关闭广告拦截器，感谢您的支持与配合！
+            </p>
+        </div>
+    </div>
+    <!-- ===== 结束 ===== -->
+
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>
+
+<style>
+    /* 公告卡片样式 - 简洁版，无多余信息 */
+    .announcement-block {
+        margin-bottom: 2rem;
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        color: white;
+    }
+
+    .dark .announcement-block {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .announcement-block:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .dark .announcement-block:hover {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .announcement-content {
+        padding: 1.5rem 2rem;
+    }
+
+    .announcement-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin: 0 0 0.75rem 0;
+        color: white;
+    }
+
+    .announcement-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+        opacity: 0.9;
+        max-width: 80%;
+    }
+
+    @media (max-width: 768px) {
+        .announcement-content {
+            padding: 1.2rem 1.5rem;
+        }
+        .announcement-title {
+            font-size: 1.2rem;
+        }
+        .announcement-description {
+            max-width: 100%;
+            font-size: 0.95rem;
+        }
+    }
+</style>
