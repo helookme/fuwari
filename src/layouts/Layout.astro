@@ -270,59 +270,82 @@ const bannerOffset =
 		</style>
 
 		<!-- 修改后的脚本：检测广告拦截器，只有开启时才显示弹窗 -->
-		<script>
-			(function() {
-				// 广告拦截检测函数
-				function detectAdBlock() {
-					var fakeAd = document.createElement('div');
-					fakeAd.innerHTML = '&nbsp;';
-					fakeAd.className = 'adsbox ad-banner ad-placeholder'; // 常见被拦截的类名
-					fakeAd.style.position = 'absolute';
-					fakeAd.style.top = '-1000px';
-					fakeAd.style.left = '-1000px';
-					document.body.appendChild(fakeAd);
-					var blocked = fakeAd.offsetHeight === 0;
-					document.body.removeChild(fakeAd);
-					return blocked;
+<script>
+	(function() {
+		// 增强的广告拦截检测函数
+		function detectAdBlock() {
+			var detected = false;
+			
+			// 方法1：创建多个常见广告类名的元素
+			var testClasses = [
+				'adsbox',
+				'ad-banner',
+				'adsbygoogle',
+				'ad',
+				'advertisement',
+				'google_ads',
+				'ad-placeholder'
+			];
+			
+			for (var i = 0; i < testClasses.length; i++) {
+				var fakeAd = document.createElement('div');
+				fakeAd.innerHTML = '&nbsp;';
+				fakeAd.className = testClasses[i];
+				fakeAd.style.position = 'absolute';
+				fakeAd.style.top = '-1000px';
+				fakeAd.style.left = '-1000px';
+				document.body.appendChild(fakeAd);
+				if (fakeAd.offsetHeight === 0) {
+					detected = true;
 				}
+				document.body.removeChild(fakeAd);
+				if (detected) break;
+			}
+			
+			return detected;
+		}
 
-				function init() {
-					var modal = document.getElementById('announcement-modal');
-					var overlay = document.getElementById('announcement-overlay');
-					var closeBtn = document.getElementById('announcement-close');
+		function init() {
+			var modal = document.getElementById('announcement-modal');
+			var overlay = document.getElementById('announcement-overlay');
+			var closeBtn = document.getElementById('announcement-close');
 
-					// 只有在检测到广告拦截时才显示
-					if (detectAdBlock()) {
-						if (modal) modal.style.display = 'block';
-						if (overlay) overlay.style.display = 'block';
-					}
+			var adBlockDetected = detectAdBlock();
+			console.log('广告拦截检测结果:', adBlockDetected); // 可删除此行
 
-					// 关闭函数
-					function closeAnnouncement() {
-						if (modal) modal.style.display = 'none';
-						if (overlay) overlay.style.display = 'none';
-					}
+			if (adBlockDetected) {
+				if (modal) modal.style.display = 'block';
+				if (overlay) overlay.style.display = 'block';
+			} else {
+				// 确保隐藏
+				if (modal) modal.style.display = 'none';
+				if (overlay) overlay.style.display = 'none';
+			}
 
-					if (closeBtn) {
-						closeBtn.addEventListener('click', closeAnnouncement);
-					}
-					if (overlay) {
-						overlay.addEventListener('click', closeAnnouncement);
-					}
+			function closeAnnouncement() {
+				if (modal) modal.style.display = 'none';
+				if (overlay) overlay.style.display = 'none';
+			}
 
-					// Swup 页面切换：保持关闭状态，不要重新弹出
-					if (window.swup) {
-						window.swup.hooks.on('page:view', function() {});
-					}
-				}
+			if (closeBtn) {
+				closeBtn.addEventListener('click', closeAnnouncement);
+			}
+			if (overlay) {
+				overlay.addEventListener('click', closeAnnouncement);
+			}
 
-				if (document.readyState === 'loading') {
-					document.addEventListener('DOMContentLoaded', init);
-				} else {
-					init();
-				}
-			})();
-		</script>
+			if (window.swup) {
+				window.swup.hooks.on('page:view', function() {});
+			}
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+	})();
+</script>
 		<!-- ===== 公告弹窗结束 ===== -->
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
