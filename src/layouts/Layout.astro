@@ -150,7 +150,7 @@ const bannerOffset =
 			style="position: fixed; bottom: 20px; right: 20px; z-index: 999; width: 260px; opacity: 0.9; border-radius: 8px;"
 		></audio>
 
-		<!-- ===== 公告弹窗（每次打开都显示） ===== -->
+		<!-- ===== 公告弹窗（仅在检测到广告拦截时显示） ===== -->
 		<div id="announcement-modal" class="announcement-modal" style="display: none;">
 			<div class="announcement-content">
 				<button class="announcement-close" id="announcement-close">&times;</button>
@@ -269,33 +269,57 @@ const bannerOffset =
 			}
 		</style>
 
+		<!-- 修改后的脚本：检测广告拦截器，只有开启时才显示弹窗 -->
 		<script>
 			(function() {
-				const modal = document.getElementById('announcement-modal');
-				const overlay = document.getElementById('announcement-overlay');
-				const closeBtn = document.getElementById('announcement-close');
-
-				// 每次页面加载都显示弹窗
-				if (modal) modal.style.display = 'block';
-				if (overlay) overlay.style.display = 'block';
-
-				function closeAnnouncement() {
-					if (modal) modal.style.display = 'none';
-					if (overlay) overlay.style.display = 'none';
+				// 广告拦截检测函数
+				function detectAdBlock() {
+					var fakeAd = document.createElement('div');
+					fakeAd.innerHTML = '&nbsp;';
+					fakeAd.className = 'adsbox ad-banner ad-placeholder'; // 常见被拦截的类名
+					fakeAd.style.position = 'absolute';
+					fakeAd.style.top = '-1000px';
+					fakeAd.style.left = '-1000px';
+					document.body.appendChild(fakeAd);
+					var blocked = fakeAd.offsetHeight === 0;
+					document.body.removeChild(fakeAd);
+					return blocked;
 				}
 
-				if (closeBtn) {
-					closeBtn.addEventListener('click', closeAnnouncement);
-				}
-				if (overlay) {
-					overlay.addEventListener('click', closeAnnouncement);
+				function init() {
+					var modal = document.getElementById('announcement-modal');
+					var overlay = document.getElementById('announcement-overlay');
+					var closeBtn = document.getElementById('announcement-close');
+
+					// 只有在检测到广告拦截时才显示
+					if (detectAdBlock()) {
+						if (modal) modal.style.display = 'block';
+						if (overlay) overlay.style.display = 'block';
+					}
+
+					// 关闭函数
+					function closeAnnouncement() {
+						if (modal) modal.style.display = 'none';
+						if (overlay) overlay.style.display = 'none';
+					}
+
+					if (closeBtn) {
+						closeBtn.addEventListener('click', closeAnnouncement);
+					}
+					if (overlay) {
+						overlay.addEventListener('click', closeAnnouncement);
+					}
+
+					// Swup 页面切换：保持关闭状态，不要重新弹出
+					if (window.swup) {
+						window.swup.hooks.on('page:view', function() {});
+					}
 				}
 
-				// 处理 Swup 页面切换：不重新显示弹窗（避免点击链接后弹出）
-				if (window.swup) {
-					window.swup.hooks.on('page:view', () => {
-						// 什么也不做，让弹窗保持当前状态（通常是隐藏）
-					});
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', init);
+				} else {
+					init();
 				}
 			})();
 		</script>
