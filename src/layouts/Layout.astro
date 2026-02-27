@@ -154,16 +154,13 @@ const bannerOffset =
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
-		<!-- 背景音乐播放器（方案二：用户手动播放） -->
-		<audio 
-			src="https://image.91787878.xyz/mp3/1.mp3" 
-			controls 
-			loop
-			style="position: fixed; bottom: 20px; right: 20px; z-index: 999; width: 260px; opacity: 0.9; border-radius: 8px;"
-		></audio>
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
+		<!-- 右下角音乐播放器 -->
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=551400874&auto=1&height=66"></iframe>
+</div>
 	</body>
 </html>
 
