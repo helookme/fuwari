@@ -19,8 +19,6 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
-// 导入音乐播放器组件
-import Music from '../components/Music.astro';
 
 interface Props {
 	title?: string;
@@ -156,14 +154,16 @@ const bannerOffset =
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
+		<!-- 背景音乐播放器（方案二：用户手动播放） -->
+		<audio 
+			src="https://image.91787878.xyz/mp3/1.mp3" 
+			controls 
+			loop
+			style="position: fixed; bottom: 20px; right: 20px; z-index: 999; width: 260px; opacity: 0.9; border-radius: 8px;"
+		></audio>
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
-
-		<!-- 固定在右下角的音乐播放器 -->
-		<div class="music-player-fixed">
-			<Music client:idle />
-		</div>
 	</body>
 </html>
 
@@ -589,23 +589,3 @@ if (window.swup) {
 	document.addEventListener("swup:enable", setup)
 }
 </script>
-
-<!-- 添加播放器固定样式 -->
-<style>
-.music-player-fixed {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  width: 300px;
-  max-width: 90vw;
-}
-
-@media (max-width: 640px) {
-  .music-player-fixed {
-    bottom: 10px;
-    right: 10px;
-    width: 250px;
-  }
-}
-</style>
