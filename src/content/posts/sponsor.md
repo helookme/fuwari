@@ -8,10 +8,10 @@ draft: false
 ---
 # 你要来赞助我嘛づ♡ど 太感谢了喵！
 微信
-![图片暂时无法打开OVO](https://image.91787878.xyz/img/sponsor1.png)
+![图片暂时无法打开OVO](https://image.578113.xyz/img/sponsor1.png)
 
 支付宝
-![图片暂时无法打开OVO](https://image.91787878.xyz/img/sponsor2.jpg)
+![图片暂时无法打开OVO](https://image.578113.xyz/img/sponsor2.jpg)
 
 QQ钱包
-![图片暂时无法打开OVO](https://image.91787878.xyz/img/sponsor3.png)
+![图片暂时无法打开OVO](https://image.578113.xyz/img/sponsor3.png)

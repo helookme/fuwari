@@ -10,13 +10,13 @@ draft: false
 # 开始
 首先在github账号上新建一个储存库,可见性公开.
 点击Repositories
-![此图片无法显示](https://image.91787878.xyz/img/imgbedwithcf2.jpg)
+![此图片无法显示](https://image.578113.xyz/img/imgbedwithcf2.jpg)
 点击New
-![此图片无法显示](https://image.91787878.xyz/img/imgbedwithcf1.jpg)
+![此图片无法显示](https://image.578113.xyz/img/imgbedwithcf1.jpg)
 设置储存库，设为公开
-![此图片无法显示](https://image.91787878.xyz/img/imgbedwithcf3.jpg)
+![此图片无法显示](https://image.578113.xyz/img/imgbedwithcf3.jpg)
 接下来我们需要让AI写一个html代码，内容随意。
-![此图片无法显示](https://image.91787878.xyz/img/imgbedwithcf4.jpg)
+![此图片无法显示](https://image.578113.xyz/img/imgbedwithcf4.jpg)
 新建一个 `index.html`,把代码复制进去.
 
 使用Git工具将储存库部署到本地，把 `index.html`放到根目录,并创建一个文件夹,名字自己记住就行.
