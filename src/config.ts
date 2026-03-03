@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 	},
 	favicon: [
   {
-    src: '/favicon/icon.ico'
+    src: 'https://image.578113.xyz/img/skyceria.jpg'
   }
 ],
 };
