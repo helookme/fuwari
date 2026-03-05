@@ -47,6 +47,10 @@ export const navBarConfig: NavBarConfig = {
             name: "友链", 
             url: "/links" 
         },
+        { 
+            name: "追番", 
+            url: "/bangumi" 
+        },
 	],	
 };
 
