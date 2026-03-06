@@ -51,6 +51,10 @@ export const navBarConfig: NavBarConfig = {
             name: "追番", 
             url: "/bangumi" 
         },
+        { 
+            name: "赞助", 
+            url: "/donate" 
+        },
 	],	
 };
 
