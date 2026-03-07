@@ -1,0 +1,169 @@
+---
+// 导入Fuwari主题的默认布局（请根据实际路径调整）
+import Layout from '../layouts/Layout.astro';
+
+// 从 /src/data/friends.ts 导入友链数据（命名导出）
+import { friends } from '../data/friends';
+// 如果您的 friends.ts 使用默认导出，请改为：
+// import friends from '../data/friends';
+
+const title = '友情链接';
+const description = '友情链接';
+---
+
+<Layout title={title} description={description}>
+  <main class="friends-container">
+    <header class="friends-header">
+      <h1>🔗 友情链接</h1>
+      <p>欢迎交换友链～请联系我的Telegram</p>
+    </header>
+
+    {friends && friends.length > 0 ? (
+      <div class="friends-grid">
+        {friends.map((friend) => (
+          <a
+            href={friend.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="friend-card"
+          >
+            {friend.avatar && (
+              <div class="friend-avatar">
+                <img
+                  src={friend.avatar}
+                  alt={friend.name}
+                  loading="lazy"
+                  onError={(e) => {
+                    // 头像加载失败时显示占位图（请将默认图片放在 public/images/default-avatar.png）
+                    e.currentTarget.src = '/images/default-avatar.png';
+                  }}
+                />
+              </div>
+            )}
+            <div class="friend-info">
+              <h3 class="friend-name">{friend.name}</h3>
+              {friend.description && (
+                <p class="friend-description">{friend.description}</p>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-message">暂无友链数据，请先添加～</p>
+    )}
+  </main>
+</Layout>
+
+<style is:global>
+  .friends-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .friends-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .friends-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #4299e1, #667eea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .friends-header p {
+    font-size: 1.2rem;
+    color: var(--color-text-light, #4a5568);
+  }
+
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .friend-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-bg-card, #ffffff);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .friend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .friend-avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color-accent, #4299e1);
+  }
+
+  .friend-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .friend-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .friend-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: var(--color-heading, #2d3748);
+  }
+
+  .friend-description {
+    font-size: 0.9rem;
+    color: var(--color-text-light, #718096);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: var(--color-text-light, #718096);
+    font-size: 1.1rem;
+    padding: 3rem;
+  }
+
+  /* 暗色模式适配 */
+  :root.dark .friend-card {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  :root.dark .friend-name {
+    color: #e2e8f0;
+  }
+
+  :root.dark .friend-description {
+    color: #a0aec0;
+  }
+</style>
