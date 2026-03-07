@@ -1,11 +1,14 @@
 ---
 title: EdgeOne优选
 published: 2026-02-08
-description: 全国绿的教程哦
+description: 全国绿?
 tags: [CDN,EdgeOne,优选]
-category: Blog
+category: 技术教程
 draft: false
 ---
+  此方法已失效，本文章是从我以前的Typecho博客里弄过来的，所以观感不佳
+  
+  
   最近EdgeOne有免费套餐，我就领了几个 发现可以和cf一样优选，最终诞生了这篇文章
   ![图片暂时无法打开OVO](https://edgeoneimg.cdn.sn/i/6992f5a213980_1771238818.webp)
  开始:

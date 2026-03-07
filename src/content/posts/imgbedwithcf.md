@@ -1,12 +1,12 @@
 ---
 title: 用CloudFlare和GitHub制作图床?
 published: 2026-02-27
-description: 理论罢了,可能会吃Abuse或者封号
+description: 注意，这种行为属于滥用公共资源，本站仅提供技术思路
 tags: [CloudFlare,图床,GitHub,搭建]
-category: Blog
+category: 技术教程
 draft: false
 ---
-这种方案可行，但最好用小号以避免封号造成损失
+这种方案可行，但最好还是使用正规图床
 # 开始
 首先在github账号上新建一个储存库,可见性公开.
 点击Repositories

@@ -7,7 +7,7 @@ tags:
   - 搭建
   - 教程
   - 博客
-category: Blog
+category: 技术教程
 draft: false
 ---
 # 前言
