@@ -55,6 +55,10 @@ export const navBarConfig: NavBarConfig = {
             name: "赞助", 
             url: "/donate" 
         },
+        { 
+            name: "Umami", 
+            url: "https://cloud.umami.is/analytics/us/share/mLTmt9aQ4PssQgzN" 
+        },
 	],	
 };
 
