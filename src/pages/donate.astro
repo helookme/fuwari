@@ -1,12 +1,12 @@
 ---
 // 导入Fuwari主题的默认布局（请根据实际路径调整）
-import Layout from '../layouts/Layout.astro';
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const title = '捐赠';
 const description = '如果您喜欢我的内容，欢迎通过微信或支付宝支持我，非常感谢！';
 ---
 
-<Layout title={title} description={description}>
+<MainGridLayout title={title} description={description}>
   <main class="donate-container">
     <header class="donate-header">
       <h1></h1>
@@ -39,11 +39,11 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
 
     <!-- 致谢区 -->
     <section class="thankyou">
-      <h2>❤️ 感谢每一份支持</h2>
+      <h2></h2>
       <p>你的鼓励让我走得更远。</p>
     </section>
   </main>
-</Layout>
+</MainGridLayout>
 
 <style is:global>
   .donate-container {
