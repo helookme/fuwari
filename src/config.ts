@@ -45,15 +45,15 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 	    { 
             name: "友链", 
-            url: "/friends" 
+            url: "/friends/" 
         },
         { 
             name: "追番", 
-            url: "/bangumi" 
+            url: "/bangumi/" 
         },
         { 
             name: "赞助", 
-            url: "/donate" 
+            url: "/donate/" 
         },
 	],	
 };
