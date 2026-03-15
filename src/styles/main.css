@@ -23,6 +23,31 @@
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
+    .post-card {
+        /* 防止半透明 + blur 在 hover/重绘时产生细线伪影 */
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    .profile-card {
+        /* 头像卡片禁用 blur，避免暗色模式出现分层细线 */
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    .post-container {
+        /* 正文卡片禁用 blur，避免暗色模式出现矩形分层细线 */
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    .overlay-panel {
+        background-color: var(--overlay-panel-bg);
+        border: 1px solid var(--line-divider);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        background-clip: padding-box;
+        overflow: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 
     /* 音乐播放器全局样式 */
     .music-player-container {
@@ -160,6 +185,7 @@
     .btn-regular-dark.success {
         @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))];
     }
+
 }
 
 .custom-md img, #post-cover img {

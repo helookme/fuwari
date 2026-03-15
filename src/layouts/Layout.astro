@@ -210,17 +210,7 @@ html, body {
 }
 
 /* 主要内容区域半透明遮罩（可调节透明度） */
-main, .content-wrapper, article {
-  background-color: rgba(255, 255, 240, 0.88); /* 0.3 表示 30% 黑色，数字越小越透明 */
-}
-
-/* 新增：暗黑模式样式 - 半透明黑色遮罩，文字白色 */
-.dark main,
-.dark .content-wrapper,
-.dark article {
-  background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色，可按需调整透明度（0.7） */
-  color: #ffffff; /* 文章文字变为白色 */
-}
+/* 主体区域不再加大面积遮罩，保留卡片自身透明度 */
 </style>
 
 <script>
