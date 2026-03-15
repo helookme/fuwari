@@ -33,10 +33,6 @@ const description = '友情链接';
                   src={friend.avatar}
                   alt={friend.name}
                   loading="lazy"
-                  onError={(e) => {
-                    // 头像加载失败时显示占位图（请将默认图片放在 public/images/default-avatar.png）
-                    e.currentTarget.src = '/images/default-avatar.png';
-                  }}
                 />
               </div>
             )}
@@ -137,7 +133,7 @@ const description = '友情链接';
 
   .friend-description {
     font-size: 0.9rem;
-    color: var(--color-text-light, #718096);
+    color: var(--color-text-light, #68778d);
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
