@@ -138,7 +138,7 @@ async function fetchPostCardViews(slug) {
             
             const statsData = await statsResponse.json();
             // 修改这一行：直接读取 pageviews 字段（它是一个数字）
-            const pageViews = statsData.pageviews || 0;
+            const pageViews = statsData.pageviews?.value || 0;
             // const visits = statsData.visits || 0;  // 如果有需要，也这样改
             
             const displayElement = document.getElementById(`page-views-${slug}`);
