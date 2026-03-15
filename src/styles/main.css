@@ -122,7 +122,7 @@
     .btn-regular {
         @apply transition-all duration-300 flex items-center justify-center bg-[var(--btn-regular-bg)] 
         hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] active:scale-95
-        text-[var(--btn-content)] dark:text-white/75 rounded-lg shadow-sm hover:shadow-md;
+        text-black/80 dark:text-white/90 rounded-lg shadow-sm hover:shadow-md;
     }
 
     .link-underline {
