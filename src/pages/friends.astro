@@ -14,7 +14,7 @@ const description = '友情链接';
 <MainGridLayout title={title} description={description}>
   <main class="friends-container">
     <header class="friends-header">
-      <h1>🔗 友情链接</h1>
+      <h1>友情链接</h1>
       <p>欢迎交换友链～请联系我的Telegram</p>
     </header>
 
@@ -67,9 +67,11 @@ const description = '友情链接';
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #4299e1, #667eea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* 改为纯黑色，移除渐变效果 */
+    color: #000000;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
   }
 
   .friends-header p {
@@ -161,5 +163,10 @@ const description = '友情链接';
 
   :root.dark .friend-description {
     color: #a0aec0;
+  }
+
+  /* 暗色模式下标题文字变为白色 */
+  :root.dark .friends-header h1 {
+    color: #ffffff;
   }
 </style>
