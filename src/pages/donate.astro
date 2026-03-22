@@ -36,12 +36,6 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
         <p class="note">扫一扫向我付款</p>
       </div>
     </div>
-
-    <!-- 致谢区 -->
-    <section class="thankyou">
-      <h2>感谢支持</h2>
-      <p>你的鼓励让我走得更远。</p>
-    </section>
   </main>
 </MainGridLayout>
 
@@ -61,9 +55,7 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #f6ad55, #ed8936);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #000000;
   }
 
   .donate-description {
@@ -102,9 +94,9 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--color-heading, #2d3748);
-    border-bottom: 2px dashed var(--color-accent, #ed8936);
     padding-bottom: 0.5rem;
     display: inline-block;
+    border-bottom: none;
   }
 
   .qr-wrapper {
@@ -130,26 +122,6 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
     margin-top: 0.5rem;
   }
 
-  .thankyou {
-    text-align: center;
-    margin-top: 3rem;
-    padding: 2rem;
-    background: var(--color-bg-soft, #fefcbf);
-    border-radius: 1rem;
-    border-left: 4px solid var(--color-accent, #ed8936);
-  }
-
-  .thankyou h2 {
-    font-size: 1.8rem;
-    color: var(--color-heading, #2d3748);
-    margin-bottom: 1rem;
-  }
-
-  .thankyou p {
-    color: var(--color-text, #2d3748);
-    font-size: 1.1rem;
-  }
-
   /* 暗色模式适配 */
   :root.dark .donate-card {
     background: #2d3748;
@@ -160,8 +132,7 @@ const description = '如果您喜欢我的内容，欢迎通过微信或支付�
     background: #1a202c;
   }
 
-  :root.dark .thankyou {
-    background: #2d3748;
-    border-left-color: #ed8936;
+  :root.dark .donate-header h1 {
+    color: #ffffff;
   }
 </style>
