@@ -16,18 +16,7 @@ const len = page.data.length;
 ---
 
 <MainGridLayout>
-    <!-- ===== 醒目公告卡片（乳白背景） ===== -->
-    <div class="announcement-block">
-        <div class="announcement-content">
-            <h1 class="announcement-title">
-                欢迎访问AkiNard Blog！
-            </h1>
-            <p class="announcement-description">
-                可以加一个书签鸭～在暗黑模式下体验更佳！
-            </p>
-        </div>
-    </div>
-    <!-- ===== 结束 ===== -->
+
 
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
