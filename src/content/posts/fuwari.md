@@ -2,7 +2,7 @@
 title: Fuwari博客搭建教程
 published: 2026-02-19
 description: "CloudFlare+GitHub无敌辣！"
-image: 'https://image.578113.xyz/posts/fuwari.png'
+image: ''https://image.578113.xyz/posts/fuwari.png"
 tags:
   - Fuwari
   - 搭建
