@@ -51,7 +51,7 @@ const { remarkPluginFrontmatter } = await entry.render();
   <!-- 内容区：占据剩余宽度 -->
   <div class:list={[
     "flex-1 pl-6 md:pl-9 pt-6 md:pt-7 pb-6 relative",
-    hasCover ? "pr-6 md:pr-2" : "pr-6 md:pr-6"  // 有封面时右侧留出一点间隙
+    hasCover ? "pr-6 md:pr-2" : "pr-6 md:pr-6"
   ]}>
     <a href={url}
        class="transition group w-full block font-bold mb-3 text-3xl text-90
@@ -86,31 +86,33 @@ const { remarkPluginFrontmatter } = await entry.render();
     </div>
   </div>
 
-  <!-- 右侧封面图 / 进入按钮（始终存在） -->
+  <!-- 右侧封面图 / 进入按钮 -->
   {hasCover ? (
     <a href={url} aria-label={title}
-       class="group flex-shrink-0 w-[var(--coverWidth)] rounded-xl overflow-hidden active:scale-95
-              transition-all hover:opacity-90">
-      <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
-      <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center">
-        <Icon name="material-symbols:chevron-right-rounded"
-              class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl" />
+       class="group flex-shrink-0 w-20 md:w-[var(--coverWidth)] rounded-xl overflow-hidden active:scale-95
+              transition-all hover:opacity-90 self-stretch">
+      <div class="relative w-full h-full">
+        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
+        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center">
+          <Icon name="material-symbols:chevron-right-rounded"
+                class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl" />
+        </div>
+        <ImageWrapper src={image} basePath={path.join("content/posts/", getDir(entry.id))}
+                      alt="Cover Image of the Post" class="w-full h-full object-cover" />
       </div>
-      <ImageWrapper src={image} basePath={path.join("content/posts/", getDir(entry.id))}
-                    alt="Cover Image of the Post" class="w-full h-full" />
     </a>
   ) : (
     <a href={url} aria-label={title}
-       class="flex-shrink-0 btn-regular w-[3.25rem] rounded-xl bg-[var(--enter-btn-bg)]
+       class="flex-shrink-0 w-12 md:w-[3.25rem] rounded-xl bg-[var(--enter-btn-bg)]
               hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95
-              flex items-center justify-center">
+              flex items-center justify-center self-stretch">
       <Icon name="material-symbols:chevron-right-rounded"
-            class="transition text-[var(--primary)] text-4xl" />
+            class="transition text-[var(--primary)] text-3xl md:text-4xl" />
     </a>
   )}
 </div>
 
-<!-- 卡片之间的分割线（保留原逻辑） -->
+<!-- 分割线 -->
 <div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
 
 <script define:vars={{ entry, umamiConfig }}>
@@ -171,10 +173,14 @@ const { remarkPluginFrontmatter } = await entry.render();
 </script>
 
 <style define:vars={{coverWidth}}>
-  /* 移动端可适当缩小封面图宽度（可选） */
+  /* 确保图片容器高度与内容一致，图片按比例裁剪 */
+  .post-card .self-stretch {
+    display: flex;
+  }
+  /* 移动端封面图宽度可根据需要微调 */
   @media (max-width: 768px) {
     .post-card {
-      --coverWidth: 100px; /* 或其它你喜欢的值 */
+      --coverWidth: 100px; /* 桌面端比例不变，移动端默认已用 w-20，这里作为备选 */
     }
   }
 </style>
