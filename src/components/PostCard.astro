@@ -39,8 +39,6 @@ const className = Astro.props.class;
 
 const hasCover = image !== undefined && image !== null && image !== "";
 
-const coverWidth = "28%";
-
 const { remarkPluginFrontmatter } = await entry.render();
 ---
 <div class:list={[
@@ -48,7 +46,7 @@ const { remarkPluginFrontmatter } = await entry.render();
   className
 ]} style={style}>
 
-  <!-- 内容区：占据剩余宽度 -->
+  <!-- 内容区：占据剩余宽度，右侧留出间距 -->
   <div class:list={[
     "flex-1 pl-6 md:pl-9 pt-6 md:pt-7 pb-6 relative",
     hasCover ? "pr-6 md:pr-2" : "pr-6 md:pr-6"
@@ -89,8 +87,8 @@ const { remarkPluginFrontmatter } = await entry.render();
   <!-- 右侧封面图 / 进入按钮 -->
   {hasCover ? (
     <a href={url} aria-label={title}
-       class="group flex-shrink-0 w-20 md:w-[var(--coverWidth)] rounded-xl overflow-hidden active:scale-95
-              transition-all hover:opacity-90 self-stretch">
+       class="group flex-shrink-0 w-20 md:w-[var(--coverWidth)] h-24 md:h-36 rounded-xl overflow-hidden active:scale-95
+              transition-all hover:opacity-90 mt-4 md:mt-6 mb-4 md:mb-6 mr-4 md:mr-6">
       <div class="relative w-full h-full">
         <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
         <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center">
@@ -103,9 +101,9 @@ const { remarkPluginFrontmatter } = await entry.render();
     </a>
   ) : (
     <a href={url} aria-label={title}
-       class="flex-shrink-0 w-12 md:w-[3.25rem] rounded-xl bg-[var(--enter-btn-bg)]
+       class="flex-shrink-0 w-12 md:w-[3.25rem] h-12 md:h-[3.25rem] rounded-xl bg-[var(--enter-btn-bg)]
               hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95
-              flex items-center justify-center self-stretch">
+              flex items-center justify-center self-center mr-4 md:mr-6">
       <Icon name="material-symbols:chevron-right-rounded"
             class="transition text-[var(--primary)] text-3xl md:text-4xl" />
     </a>
@@ -173,14 +171,10 @@ const { remarkPluginFrontmatter } = await entry.render();
 </script>
 
 <style define:vars={{coverWidth}}>
-  /* 确保图片容器高度与内容一致，图片按比例裁剪 */
-  .post-card .self-stretch {
-    display: flex;
-  }
-  /* 移动端封面图宽度可根据需要微调 */
+  /* 桌面端封面图宽度可自定义，高度已用 md:h-36 固定，如需调整比例可修改此处 */
   @media (max-width: 768px) {
     .post-card {
-      --coverWidth: 100px; /* 桌面端比例不变，移动端默认已用 w-20，这里作为备选 */
+      --coverWidth: 80px; /* 移动端宽度控制，与 w-20 配合 */
     }
   }
 </style>
