@@ -1,7 +1,7 @@
 ---
 title: "[校园霸凌]作为校园霸凌的旁观者，我是如何做的"
 published: 2026-03-09
-description: 完全真实事件
+description: 第一次写千字长文！
 tags:
   - 学校
   - 校园霸凌
