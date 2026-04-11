@@ -7,6 +7,8 @@ tags: [Vercel,GitHub]
 category: 技术教程
 draft: false
 ---
+> 不知道写啥了，那就水一期吧(
+
 ## 前情提要
 
 一天闲逛YT，看到了这个挺有意思的世界大屏，去看了眼仓库，发现可以部署在Vercel上，就有了这篇博客
