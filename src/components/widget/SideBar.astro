@@ -11,10 +11,21 @@ interface Props {
 }
 
 const className = Astro.props.class;
+import { getCollection } from "astro:content";
+
+// 获取所有已发布的文章（不包含草稿）
+const allPosts = await getCollection("posts", ({ data }) => !data.draft);
+
+// 计算总字数
+let totalWords = 0;
+for (const post of allPosts) {
+  const { remarkPluginFrontmatter } = await post.render();
+  totalWords += remarkPluginFrontmatter.words || 0;
+}
 ---
 <div id="sidebar" class:list={[className, "w-full"]}>
     <div class="flex flex-col w-full gap-4 mb-4">
-        <Profile></Profile>
+        <Profile totalWords={totalWords}></Profile>
     </div>
     <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
         <Categories class="onload-animation" style="animation-delay: 150ms"></Categories>
