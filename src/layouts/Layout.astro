@@ -206,8 +206,99 @@ html, body {
   padding: 0;
 }
 
-/* 主要内容区域半透明遮罩（可调节透明度） */
-/* 主体区域不再加大面积遮罩，保留卡片自身透明度 */
+/* ===== 毛玻璃效果美化 ===== */
+
+/* 顶部导航栏毛玻璃 */
+#navbar-wrapper {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* 暗色模式导航栏适配 */
+.dark #navbar-wrapper {
+  background-color: rgba(20, 20, 30, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 侧边栏毛玻璃 */
+#sidebar-sticky {
+  backdrop-filter: blur(8px) saturate(160%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dark #sidebar-sticky {
+  background-color: rgba(30, 30, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 文章卡片毛玻璃效果（增强层次感） */
+#main-grid .card,
+.post-card,
+article.bg-white,
+article.dark\:bg-gray-800 {
+  backdrop-filter: blur(5px) saturate(150%);
+  -webkit-backdrop-filter: blur(5px) saturate(150%);
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark #main-grid .card,
+.dark .post-card,
+.dark article.bg-white,
+.dark article.dark\:bg-gray-800 {
+  background-color: rgba(40, 40, 50, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 悬浮时微动效 */
+#main-grid .card:hover,
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.dark #main-grid .card:hover,
+.dark .post-card:hover {
+  background-color: rgba(50, 50, 65, 0.75) !important;
+}
+
+/* 分页、小工具等容器也可以加上毛玻璃，可选 */
+.pagination,
+.widget {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.dark .pagination,
+.dark .widget {
+  background-color: rgba(30, 30, 40, 0.5);
+}
+
+/* 确保导航栏文字在模糊背景上清晰可见 */
+#navbar-wrapper a,
+#navbar-wrapper button {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.dark #navbar-wrapper a,
+.dark #navbar-wrapper button {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
 </style>
 
 <script>

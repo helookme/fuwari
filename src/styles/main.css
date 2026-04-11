@@ -3,46 +3,46 @@
 @layer components {
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 ease-out;
-        /* 使用半透明背景色配合 backdrop-filter */
+        /* 增强毛玻璃效果：更高的模糊值 + 饱和度提升 */
         background-color: var(--card-bg-transparent);
         border: 1px solid var(--line-divider);
-        /* iOS Safari 支持 - 毛玻璃效果 */
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-        /* 硬件加速 */
+        -webkit-backdrop-filter: blur(20px) saturate(200%);
+        backdrop-filter: blur(20px) saturate(200%);
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
     
-    /* 增加毛玻璃效果工具类 */
+    /* 增强版毛玻璃工具类 */
     .glass-effect {
         background-color: var(--card-bg-transparent);
-        -webkit-backdrop-filter: blur(16px);
-        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(24px) saturate(220%);
+        backdrop-filter: blur(24px) saturate(220%);
         border: 1px solid var(--line-divider);
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
+
     .post-card {
-        /* 防止半透明 + blur 在 hover/重绘时产生细线伪影 */
+        /* 如果某些卡片要保留无模糊，可单独设置，这里保持原样 */
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
     }
+
     .profile-card {
-        /* 头像卡片禁用 blur，避免暗色模式出现分层细线 */
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
     }
+
     .post-container {
-        /* 正文卡片禁用 blur，避免暗色模式出现矩形分层细线 */
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
     }
+
     .overlay-panel {
         background-color: var(--overlay-panel-bg);
         border: 1px solid var(--line-divider);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
         background-clip: padding-box;
         overflow: hidden;
         -webkit-transform: translateZ(0);
@@ -79,10 +79,10 @@
 
     .float-panel {
         @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 shadow-xl dark:shadow-none border border-[var(--line-divider)];
-        /* 使用半透明背景 + iOS Safari 支持 */
+        /* 增强浮动面板毛玻璃 */
         background-color: var(--float-panel-bg-transparent);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
@@ -142,7 +142,6 @@
 
     .hide-scrollbar {
         -ms-overflow-style: none;
-        /* stylelint-disable-next-line property-no-unknown */
         scrollbar-width: none;
     }
     .hide-scrollbar::-webkit-scrollbar {
