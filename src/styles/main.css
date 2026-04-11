@@ -1,53 +1,99 @@
 @tailwind components;
 
 @layer components {
+    /* ============================================ */
+    /* 🧊 毛玻璃核心类 —— 从这里修改模糊强度       */
+    /* ============================================ */
+    
+    /* 基础卡片 —— 已强化高斯模糊 */
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 ease-out;
-        /* 增强毛玻璃效果：更高的模糊值 + 饱和度提升 */
-        background-color: var(--card-bg-transparent);
-        border: 1px solid var(--line-divider);
-        -webkit-backdrop-filter: blur(20px) saturate(200%);
-        backdrop-filter: blur(20px) saturate(200%);
+        /* 修改点：背景透明度调至 0.25，模糊 24px，饱和度 200% */
+        background-color: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+        backdrop-filter: blur(24px) saturate(200%);
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
-    
-    /* 增强版毛玻璃工具类 */
+    .dark .card-base {
+        background-color: rgba(20, 20, 30, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* 专用毛玻璃工具类 —— 最强效果 */
     .glass-effect {
-        background-color: var(--card-bg-transparent);
-        -webkit-backdrop-filter: blur(24px) saturate(220%);
-        backdrop-filter: blur(24px) saturate(220%);
-        border: 1px solid var(--line-divider);
+        background-color: rgba(255, 255, 255, 0.2);
+        -webkit-backdrop-filter: blur(30px) saturate(250%);
+        backdrop-filter: blur(30px) saturate(250%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
-
-    .post-card {
-        /* 如果某些卡片要保留无模糊，可单独设置，这里保持原样 */
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
+    .dark .glass-effect {
+        background-color: rgba(15, 15, 25, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    /* 文章卡片 —— 你可以根据喜好开关模糊 */
+    .post-card {
+        /* 如果想给文章卡片也加毛玻璃，去掉下面的注释即可 */
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .dark .post-card {
+        background-color: rgba(30, 30, 40, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 个人资料卡片 —— 通常不放模糊，保持原样 */
     .profile-card {
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
     }
 
+    /* 正文容器 —— 保持清晰阅读 */
     .post-container {
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
     }
 
+    /* 覆盖层面板（如搜索框） */
     .overlay-panel {
-        background-color: var(--overlay-panel-bg);
-        border: 1px solid var(--line-divider);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        backdrop-filter: blur(20px) saturate(180%);
+        background-color: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+        backdrop-filter: blur(24px) saturate(200%);
         background-clip: padding-box;
         overflow: hidden;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
+    .dark .overlay-panel {
+        background-color: rgba(25, 25, 35, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* 浮动面板（如设置菜单） */
+    .float-panel {
+        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 shadow-xl dark:shadow-none;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(28px) saturate(220%);
+        backdrop-filter: blur(28px) saturate(220%);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    .dark .float-panel {
+        background-color: rgba(20, 20, 30, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ============================================ */
+    /* 以下为原有样式，未做改动                     */
+    /* ============================================ */
 
     /* 音乐播放器全局样式 */
     .music-player-container {
@@ -77,15 +123,6 @@
         @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
     }
 
-    .float-panel {
-        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 shadow-xl dark:shadow-none border border-[var(--line-divider)];
-        /* 增强浮动面板毛玻璃 */
-        background-color: var(--float-panel-bg-transparent);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-    }
     .float-panel-closed {
         @apply -translate-y-4 opacity-0 pointer-events-none scale-95;
     }
