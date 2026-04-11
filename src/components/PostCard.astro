@@ -166,4 +166,39 @@ const { remarkPluginFrontmatter } = await entry.render();
 </script>
 
 <style define:vars={{coverWidth}}>
+	/* 毛玻璃效果强化 —— 直接应用于文章卡片 */
+	.post-card {
+		background-color: rgba(255, 255, 255, 0.2) !important;
+		-webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+		backdrop-filter: blur(25px) saturate(200%) !important;
+		border: 1px solid rgba(255, 255, 255, 0.3) !important;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05) !important;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	/* 暗色模式适配 */
+	.dark .post-card {
+		background-color: rgba(20, 20, 30, 0.25) !important;
+		border: 1px solid rgba(255, 255, 255, 0.1) !important;
+	}
+
+	/* 悬浮时背景稍微变亮，增强交互感 */
+	.post-card:hover {
+		background-color: rgba(255, 255, 255, 0.3) !important;
+		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+	}
+
+	.dark .post-card:hover {
+		background-color: rgba(30, 30, 45, 0.35) !important;
+	}
+
+	/* 确保封面图片的圆角与卡片协调 */
+	.post-card a[href*="/posts/"] img {
+		border-radius: 12px;
+	}
+
+	/* 移除移动端分隔线的额外背景，避免遮挡毛玻璃效果 */
+	.post-card + .border-t {
+		background-color: transparent !important;
+	}
 </style>
