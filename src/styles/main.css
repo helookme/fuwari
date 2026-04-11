@@ -253,10 +253,10 @@
 }
 
 /* ============================================ */
-/* 🔧 精准毛玻璃补丁 —— 强制覆盖页面主体区域    */
+/* 🔧 精准毛玻璃补丁 —— 移动端友好版          */
 /* ============================================ */
 
-/* 1. 文章卡片 - 针对所有可能的卡片容器 */
+/* 1. 文章卡片 —— 仅添加模糊与背景，不改变盒模型 */
 .bg-white,
 .dark .dark\:bg-gray-800,
 .dark .dark\:bg-gray-900,
@@ -272,8 +272,10 @@ main .card,
     -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
     backdrop-filter: blur(25px) saturate(200%) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-radius: 16px !important;
+    /* 使用主题变量或默认圆角，避免固定值破坏设计 */
+    border-radius: var(--radius-large, 16px) !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05) !important;
+    /* 不添加额外内边距，保留原始间距 */
 }
 
 .dark .bg-white,
@@ -291,7 +293,7 @@ main .card,
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 2. 侧边栏容器 */
+/* 2. 侧边栏容器 —— 保留模糊，移除强制内边距 */
 #sidebar-sticky,
 aside,
 .sidebar,
@@ -302,7 +304,7 @@ aside,
     backdrop-filter: blur(20px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 16px !important;
-    padding: 1rem !important;
+    /* 不再强制设置 padding，使用组件原有间距 */
 }
 
 .dark #sidebar-sticky,
@@ -314,7 +316,7 @@ aside,
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 3. 主内容区域背景（可选，让整体有通透感） */
+/* 3. 主内容区域背景 —— 桌面端才加内边距，移动端不受影响 */
 main,
 .main-content,
 #main-grid,
@@ -323,7 +325,7 @@ main,
     -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
     backdrop-filter: blur(15px) saturate(150%) !important;
     border-radius: 20px !important;
-    padding: 1.5rem !important;
+    /* 默认无 padding，通过媒体查询在宽屏添加 */
 }
 
 .dark main,
@@ -331,6 +333,16 @@ main,
 .dark #main-grid,
 .dark .content-wrapper {
     background-color: rgba(10, 10, 20, 0.2) !important;
+}
+
+/* 桌面端 (宽度 ≥ 1024px) 添加适当内边距，提升宽屏视觉效果 */
+@media (min-width: 1024px) {
+    main,
+    .main-content,
+    #main-grid,
+    .content-wrapper {
+        padding: 1.5rem !important;
+    }
 }
 
 /* 4. 文章正文内部保持清晰，避免双重模糊 */
@@ -343,7 +355,7 @@ main,
     backdrop-filter: none !important;
 }
 
-/* 5. 分页、标签云等小部件 */
+/* 5. 分页、标签云等小部件 —— 保留模糊，不强制内边距 */
 .pagination,
 .tags-cloud,
 .widget,
@@ -353,8 +365,8 @@ main,
     -webkit-backdrop-filter: blur(15px) !important;
     backdrop-filter: blur(15px) !important;
     border-radius: 12px !important;
-    padding: 1rem !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    /* 移除固定 padding，让组件自己控制间距 */
 }
 
 .dark .pagination,
@@ -366,18 +378,20 @@ main,
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 6. 悬浮效果增强 */
-.bg-white:hover,
-article:hover,
-.post-card:hover,
-[class*="card"]:hover {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
-}
+/* 6. 悬浮效果增强（仅支持 hover 的设备生效） */
+@media (hover: hover) and (pointer: fine) {
+    .bg-white:hover,
+    article:hover,
+    .post-card:hover,
+    [class*="card"]:hover {
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+    }
 
-.dark .bg-white:hover,
-.dark article:hover,
-.dark .post-card:hover,
-.dark [class*="card"]:hover {
-    background-color: rgba(30, 30, 45, 0.35) !important;
+    .dark .bg-white:hover,
+    .dark article:hover,
+    .dark .post-card:hover,
+    .dark [class*="card"]:hover {
+        background-color: rgba(30, 30, 45, 0.35) !important;
+    }
 }
