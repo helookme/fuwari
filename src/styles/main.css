@@ -251,3 +251,133 @@
 .collapsed {
     height: var(--collapsedHeight);
 }
+
+/* ============================================ */
+/* 🔧 精准毛玻璃补丁 —— 强制覆盖页面主体区域    */
+/* ============================================ */
+
+/* 1. 文章卡片 - 针对所有可能的卡片容器 */
+.bg-white,
+.dark .dark\:bg-gray-800,
+.dark .dark\:bg-gray-900,
+article,
+.post-card,
+#main-grid .card,
+main .card,
+[class*="card"],
+[class*="post-item"],
+[class*="post-card"],
+[class*="article-card"] {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+    backdrop-filter: blur(25px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark .bg-white,
+.dark .dark\:bg-gray-800,
+.dark .dark\:bg-gray-900,
+.dark article,
+.dark .post-card,
+.dark #main-grid .card,
+.dark main .card,
+.dark [class*="card"],
+.dark [class*="post-item"],
+.dark [class*="post-card"],
+.dark [class*="article-card"] {
+    background-color: rgba(20, 20, 30, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 2. 侧边栏容器 */
+#sidebar-sticky,
+aside,
+.sidebar,
+[class*="sidebar"],
+[class*="side-bar"] {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 1rem !important;
+}
+
+.dark #sidebar-sticky,
+.dark aside,
+.dark .sidebar,
+.dark [class*="sidebar"],
+.dark [class*="side-bar"] {
+    background-color: rgba(15, 15, 25, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. 主内容区域背景（可选，让整体有通透感） */
+main,
+.main-content,
+#main-grid,
+.content-wrapper {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+    backdrop-filter: blur(15px) saturate(150%) !important;
+    border-radius: 20px !important;
+    padding: 1.5rem !important;
+}
+
+.dark main,
+.dark .main-content,
+.dark #main-grid,
+.dark .content-wrapper {
+    background-color: rgba(10, 10, 20, 0.2) !important;
+}
+
+/* 4. 文章正文内部保持清晰，避免双重模糊 */
+.post-container,
+.article-content,
+.prose,
+.markdown-body {
+    background-color: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* 5. 分页、标签云等小部件 */
+.pagination,
+.tags-cloud,
+.widget,
+.tag-cloud,
+.categories {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    backdrop-filter: blur(15px) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .pagination,
+.dark .tags-cloud,
+.dark .widget,
+.dark .tag-cloud,
+.dark .categories {
+    background-color: rgba(20, 20, 30, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 6. 悬浮效果增强 */
+.bg-white:hover,
+article:hover,
+.post-card:hover,
+[class*="card"]:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .bg-white:hover,
+.dark article:hover,
+.dark .post-card:hover,
+.dark [class*="card"]:hover {
+    background-color: rgba(30, 30, 45, 0.35) !important;
+}
