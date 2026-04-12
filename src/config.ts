@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 	},
 	favicon: [
   {
-    src: 'https://image.578113.xyz/img/skyceria.jpg'
+    src: 'https://q1.qlogo.cn/g?b=qq&nk=3833773438&s=640'
   }
 ],
 };

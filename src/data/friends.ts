@@ -15,7 +15,7 @@ export const friends = [
   {
     name: "AcoFork Blog",
     url: "https://2x.nz",
-    avatar: "https://image.578113.xyz/img/friend3.jpg",
+    avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0",
     description: "Protect What You Love",
   },
     {
