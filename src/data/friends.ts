@@ -18,4 +18,10 @@ export const friends = [
     avatar: "https://image.578113.xyz/img/friend3.jpg",
     description: "Protect What You Love",
   },
+    {
+    name: "Codfish Blog",
+    url: "https://codfish.top",
+    avatar: "https://codfish.top/favicon.ico",
+    description: "🐟🐟🐟",
+  },
 ];
