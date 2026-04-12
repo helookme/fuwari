@@ -45,14 +45,14 @@ const coverWidth = "28%";
 const { remarkPluginFrontmatter } = await entry.render();
 ---
 
-<!-- 卡片容器：横向布局，最小高度自适应，毛玻璃效果 -->
+<!-- 卡片容器：移除固定高度，改用最小高度 + 横向布局 + 毛玻璃 -->
 <div
 	class:list={[
 		"post-card",
-		"flex flex-row",
-		"min-h-[13rem] md:min-h-[15rem]",
+		"flex flex-row",                        // 强制横向排列
+		"min-h-[13rem] md:min-h-[15rem]",       // 最小高度，内容过多时自动撑高
 		"w-full",
-		"rounded-2xl",
+		"rounded-2xl",                          // 更大圆角
 		"overflow-hidden",
 		"relative",
 		"transition-all duration-300",
@@ -94,7 +94,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 		</div>
 	</div>
 
-	{/* 封面区域：固定宽度，高度跟随卡片，图片完整显示 */}
+	{/* 封面区域：固定宽度，高度跟随卡片（h-full） */}
 	{hasCover ? (
 		<a
 			href={url}
@@ -108,12 +108,11 @@ const { remarkPluginFrontmatter } = await entry.render();
 					class="text-white text-4xl opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all"
 				/>
 			</div>
-			{/* 🔥 修改点：object-cover → object-contain，完整显示图片；添加背景色融合留白 */}
 			<ImageWrapper
 				src={image}
 				basePath={path.join("content/posts/", getDir(entry.id))}
 				alt={`Cover of ${title}`}
-				class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 bg-white/10 dark:bg-black/10"
+				class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 			/>
 		</a>
 	) : (
@@ -127,7 +126,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 	)}
 </div>
 
-<!-- 移动端分隔线（可根据需要在全局样式中进一步处理） -->
+<!-- 移动端分隔线 -->
 <div class="md:hidden border-t border-dashed border-black/10 dark:border-white/15 mx-4 last:hidden"></div>
 
 <script define:vars={{ entry, umamiConfig, coverWidth }}>
@@ -185,7 +184,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 		background-color: rgba(35, 35, 50, 0.4) !important;
 	}
 
-	/* 封面图片圆角适配（右侧圆角） */
+	/* 封面图片圆角适配 */
 	.post-card a[href*="/posts/"] img {
 		border-radius: 0 1rem 1rem 0;
 	}
