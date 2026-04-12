@@ -39,125 +39,124 @@ const className = Astro.props.class;
 
 const hasCover = image !== undefined && image !== null && image !== "";
 
+// 封面宽度：桌面端 28%，移动端 33.333%（w-1/3）
 const coverWidth = "28%";
 
 const { remarkPluginFrontmatter } = await entry.render();
 ---
-<div class:list={["card-base post-card flex flex-col-reverse md:flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative", className]} style={style}>
-    <div class:list={["pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative", {"w-full md:w-[calc(100%_-_52px_-_12px)]": !hasCover, "w-full md:w-[calc(100%_-_var(--coverWidth)_-_12px)]": hasCover}]}>
-        <a href={url}
-           class="transition group w-full block font-bold mb-3 text-2xl text-90
-        hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
-        active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
-        before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
-        before:absolute before:top-[35px] before:left-[18px] before:hidden md:before:block
-        ">
-            {title}
-            <Icon class="inline text-[2rem] text-[var(--primary)] md:hidden translate-y-0.5 absolute" name="material-symbols:chevron-right-rounded" ></Icon>
-            <Icon class="text-[var(--primary)] text-[2rem] transition hidden md:inline absolute translate-y-0.5 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0" name="material-symbols:chevron-right-rounded"></Icon>
-        </a>
 
-        <!-- metadata -->
-        <PostMetadata published={published} updated={updated} tags={tags} category={category} hideTagsForMobile={true} hideUpdateDate={true} class="mb-4"></PostMetadata>
+<!-- 卡片容器：固定高度 + 横向布局 + 加大圆角 + 毛玻璃 -->
+<div
+	class:list={[
+		"post-card",
+		"flex flex-row",                        // 强制横向排列
+		"h-52 md:h-60",                         // 固定高度（移动端 13rem，桌面端 15rem）
+		"w-full",
+		"rounded-2xl",                          // 更大圆角
+		"overflow-hidden",
+		"relative",
+		"transition-all duration-300",
+		"border border-white/30 dark:border-white/10",
+		"shadow-lg hover:shadow-xl",
+		className
+	]}
+	style={style}
+>
+	{/* 信息区域：自动填充剩余宽度 */}
+	<div class="flex-1 flex flex-col justify-center px-5 md:px-6 py-4">
+		<a
+			href={url}
+			class="group block font-bold text-xl md:text-2xl text-90 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors mb-2 line-clamp-2"
+		>
+			{title}
+		</a>
 
-        <!-- description -->
-        <div class:list={["transition text-75 mb-3.5 pr-4", {"line-clamp-2 md:line-clamp-1": !description}]}>
-            { description || remarkPluginFrontmatter.excerpt }
-        </div>
+		<PostMetadata
+			published={published}
+			updated={updated}
+			tags={tags}
+			category={category}
+			hideTagsForMobile={true}
+			hideUpdateDate={true}
+			class="mb-2 text-sm"
+		/>
 
-        <!-- word count and read time  -->
-        <div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition">
-            <div>
-                {remarkPluginFrontmatter.words} {" " + i18n(remarkPluginFrontmatter.words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}
-            </div>
-            <div>|</div>
-            <div>
-                {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
-        <span class="text-50 text-sm font-medium" id={`page-views-${entry.slug}`}> |  加载中...</span>
-            </div>
-        </div>
+		<p class="text-sm text-75 line-clamp-2 md:line-clamp-3 mb-2 pr-2">
+			{description || remarkPluginFrontmatter.excerpt}
+		</p>
 
-    </div>
+		<div class="text-xs text-black/40 dark:text-white/40 flex items-center gap-3 mt-auto">
+			<span>{remarkPluginFrontmatter.words} {i18n(remarkPluginFrontmatter.words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}</span>
+			<span class="w-0.5 h-0.5 rounded-full bg-current opacity-40"></span>
+			<span>{remarkPluginFrontmatter.minutes} {i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}</span>
+			<span class="text-50" id={`page-views-${entry.slug}`}>加载中...</span>
+		</div>
+	</div>
 
-    {hasCover && <a href={url} aria-label={title}
-                    class:list={["group",
-                        "max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0",
-                        "md:w-[var(--coverWidth)] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
-                    ]} >
-        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
-        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
-            <Icon name="material-symbols:chevron-right-rounded"
-                  class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl">
-            </Icon>
-        </div>
-        <ImageWrapper src={image} basePath={path.join("content/posts/", getDir(entry.id))} alt="Cover Image of the Post"
-                  class="w-full h-full">
-        </ImageWrapper>
-    </a>}
-
-    {!hasCover &&
-        <a href={url} aria-label={title} class="!hidden md:!flex btn-regular w-[3.25rem]
-         absolute right-3 top-3 bottom-3 rounded-xl bg-[var(--enter-btn-bg)]
-         hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95
-        ">
-            <Icon name="material-symbols:chevron-right-rounded"
-                  class="transition text-[var(--primary)] text-4xl mx-auto">
-            </Icon>
-        </a>
-    }
+	{/* 封面区域：固定宽度，图片自适应填满 */}
+	{hasCover ? (
+		<a
+			href={url}
+			aria-label={title}
+			class="block w-1/3 md:w-[var(--coverWidth)] h-full flex-shrink-0 relative group overflow-hidden rounded-r-2xl"
+		>
+			<div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 group-active:bg-black/40 transition-colors z-10 rounded-r-2xl"></div>
+			<div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+				<Icon
+					name="material-symbols:chevron-right-rounded"
+					class="text-white text-4xl opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all"
+				/>
+			</div>
+			<ImageWrapper
+				src={image}
+				basePath={path.join("content/posts/", getDir(entry.id))}
+				alt={`Cover of ${title}`}
+				class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+			/>
+		</a>
+	) : (
+		<a
+			href={url}
+			aria-label={title}
+			class="hidden md:flex items-center justify-center w-12 h-full flex-shrink-0 bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] transition-colors rounded-r-2xl"
+		>
+			<Icon name="material-symbols:chevron-right-rounded" class="text-[var(--primary)] text-3xl" />
+		</a>
+	)}
 </div>
-<div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
 
-<script define:vars={{ entry, umamiConfig }}>
+<!-- 移动端分隔线（可保留，但已用卡片间距控制，可自行决定是否隐藏） -->
+<div class="md:hidden border-t border-dashed border-black/10 dark:border-white/15 mx-4 last:hidden"></div>
+
+<script define:vars={{ entry, umamiConfig, coverWidth }}>
+	// ... 保持原有浏览量获取逻辑不变 ...
 	async function fetchPostCardViews(slug) {
-		if (!umamiConfig.enable) {
-			return;
-		}
-
+		if (!umamiConfig.enable) return;
 		try {
 			const shareResponse = await fetch(`${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}`);
-			if (!shareResponse.ok) {
-				throw new Error(" |  获取分享信息失败");
-			}
-
+			if (!shareResponse.ok) throw new Error("获取分享信息失败");
 			const shareData = await shareResponse.json();
 			const { websiteId, token } = shareData;
-
 			const currentTimestamp = Date.now();
 			const postPath = `/posts/${slug}/`;
 			const statsUrl = `${umamiConfig.baseUrl}/api/websites/${websiteId}/stats?startAt=0&endAt=${currentTimestamp}&unit=hour&timezone=${encodeURIComponent(umamiConfig.timezone)}&path=${encodeURIComponent(postPath)}&compare=false`;
 			const statsResponse = await fetch(statsUrl, {
-				headers: {
-					"x-umami-share-token": token,
-				},
+				headers: { "x-umami-share-token": token },
 			});
-
-			if (!statsResponse.ok) {
-				throw new Error(" |  获取统计数据失败");
-			}
-
+			if (!statsResponse.ok) throw new Error("获取统计数据失败");
 			const statsData = await statsResponse.json();
 			const pageViews = Number(statsData.pageviews ?? 0);
-			const displayElement = document.getElementById(`page-views-${slug}`);
-			if (displayElement) {
-				displayElement.textContent = ` |  浏览量 ${pageViews}`;
-			}
+			const displayElement = document.getElementById(`page-views-${entry.slug}`);
+			if (displayElement) displayElement.textContent = ` · ${pageViews} 阅读`;
 		} catch (error) {
-			console.error("Error fetching page views for", slug, ":", error);
-			const displayElement = document.getElementById(`page-views-${slug}`);
-			if (displayElement) {
-				displayElement.textContent = " |  统计不可用";
-			}
+			console.error(error);
+			const displayElement = document.getElementById(`page-views-${entry.slug}`);
+			if (displayElement) displayElement.textContent = " · 统计不可用";
 		}
 	}
-
 	function initPostCardStats() {
-		const slug = entry.slug;
-		if (slug) {
-			fetchPostCardViews(slug);
-		}
+		if (entry.slug) fetchPostCardViews(entry.slug);
 	}
-
 	if (document.readyState === "loading") {
 		document.addEventListener("DOMContentLoaded", initPostCardStats);
 	} else {
@@ -165,40 +164,29 @@ const { remarkPluginFrontmatter } = await entry.render();
 	}
 </script>
 
-<style define:vars={{coverWidth}}>
-	/* 毛玻璃效果强化 —— 直接应用于文章卡片 */
+<style define:vars={{ coverWidth }}>
+	/* 卡片容器毛玻璃效果（直接写在此处，确保覆盖） */
 	.post-card {
 		background-color: rgba(255, 255, 255, 0.2) !important;
 		-webkit-backdrop-filter: blur(25px) saturate(200%) !important;
 		backdrop-filter: blur(25px) saturate(200%) !important;
-		border: 1px solid rgba(255, 255, 255, 0.3) !important;
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05) !important;
-		transition: background-color 0.3s ease, box-shadow 0.3s ease;
 	}
 
-	/* 暗色模式适配 */
 	.dark .post-card {
-		background-color: rgba(20, 20, 30, 0.25) !important;
-		border: 1px solid rgba(255, 255, 255, 0.1) !important;
+		background-color: rgba(20, 20, 30, 0.3) !important;
 	}
 
-	/* 悬浮时背景稍微变亮，增强交互感 */
+	/* 悬浮时背景稍微变亮 */
 	.post-card:hover {
 		background-color: rgba(255, 255, 255, 0.3) !important;
-		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
 	}
 
 	.dark .post-card:hover {
-		background-color: rgba(30, 30, 45, 0.35) !important;
+		background-color: rgba(35, 35, 50, 0.4) !important;
 	}
 
-	/* 确保封面图片的圆角与卡片协调 */
+	/* 封面图片圆角适配 */
 	.post-card a[href*="/posts/"] img {
-		border-radius: 12px;
-	}
-
-	/* 移除移动端分隔线的额外背景，避免遮挡毛玻璃效果 */
-	.post-card + .border-t {
-		background-color: transparent !important;
+		border-radius: 0 1rem 1rem 0;
 	}
 </style>
