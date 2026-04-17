@@ -24,4 +24,10 @@ export const friends = [
     avatar: "https://codfish.top/favicon.ico",
     description: "🐟🐟🐟",
   },
+  {
+    name: "AlexMa's Blog",
+    url: "https://blog.alexma.top/",
+    avatar: "https://imgproxy.alexma.top/XXKGpBkD10-GDrWn5b8asJspKs16xZz2AUxQE9VY4pI/rs:fit:512:512/f:webp/q:80/plain/s3://blog-pics/avatar.webp",
+    description: "Create things with love.",
+  },
 ];
