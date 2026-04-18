@@ -3,6 +3,7 @@
 > 特别感谢大佬 AdCloseNN 和 AlexMa
 
 官方仓库:https://github.com/saicaca/fuwari
+
 个人仓库:https://github.com/helookme/fuwari
 
 ## 个人介绍
@@ -24,7 +25,7 @@
 于是乎，文章全丢
 
 ### 2026-02-15
-一年了，我重整旗鼓，跟着二叉树树（https://2x.nz/）做了第一个静态博客，也就是本站。
+一年了，我重整旗鼓，跟着二叉树树做了第一个静态博客，也就是本站。
 
 同年，拥有自己的域名578113.xyz（26一年的.top对于初中生来说还是太贵了）
 
@@ -49,3 +50,9 @@ AdCloseNN大佬帮助重构UI
 全站UI大大大改！改掉俩大佬帮写的UI
 
 1. 全权托管给DeepSeek专家模式，博客毛玻璃启动！就是现在博客这一款
+
+### 2026-04-17
+
+博客分流解析，blog.578113.xyz子域NS到华为云，所以国内访问没有SSL证书
+
+国内使用EdgeOne Pages，国外使用CloudFlare Pages
