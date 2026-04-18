@@ -48,12 +48,16 @@ export const navBarConfig: NavBarConfig = {
             url: "/friends/" 
         },
         { 
-            name: "追番", 
-            url: "/bangumi/" 
-        },
-        { 
             name: "赞助", 
             url: "/donate/" 
+        },
+        { 
+            name: "关于", 
+            url: "/about/" 
+        },
+        { 
+            name: "追番", 
+            url: "/bangumi/" 
         },
 	],	
 };
