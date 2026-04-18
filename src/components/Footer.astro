@@ -43,6 +43,7 @@ const commitTimestamp = import.meta.env.CF_PAGES_COMMIT_TIMESTAMP
     <div class="text-50 text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
         ({commitSha} @ {commitTimestamp})
     <div>
+    <div>
     {import.meta.env.PUBLIC_HOSTING_PLATFORM 
       ? `响应节点：${import.meta.env.PUBLIC_HOSTING_PLATFORM}` 
       : '响应节点：未知平台'}
