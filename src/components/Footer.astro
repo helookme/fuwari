@@ -39,13 +39,9 @@ const commitTimestamp = import.meta.env.CF_PAGES_COMMIT_TIMESTAMP
         <a href="https://icp.gov.moe/?keyword=20260130" target="_blank">萌ICP备20260130号</a>
     </div>
 
-    <!-- 版本信息单独一行 -->
+    <!-- 版本和节点信息合并为一行 -->
     <div class="text-50 text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
         ({commitSha} @ {commitTimestamp})
+        {import.meta.env.PUBLIC_HOSTING_PLATFORM ? ` | 响应节点：${import.meta.env.PUBLIC_HOSTING_PLATFORM}` : ' | 响应节点：未知平台'}
     </div>
-<div class="text-50 text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
-  {import.meta.env.PUBLIC_HOSTING_PLATFORM 
-    ? `响应节点：${import.meta.env.PUBLIC_HOSTING_PLATFORM}` 
-    : '响应节点：未知平台'}
-</div>
 </div>
