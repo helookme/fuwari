@@ -30,4 +30,10 @@ export const friends = [
     avatar: "https://imgproxy.alexma.top/XXKGpBkD10-GDrWn5b8asJspKs16xZz2AUxQE9VY4pI/rs:fit:512:512/f:webp/q:80/plain/s3://blog-pics/avatar.webp",
     description: "Create things with love.",
   },
+  {
+    name: "Arcwolf Blog",
+    url: "https://www.arcwolf.top",
+    avatar: "https://www.arcwolf.top/assets/home/28.png"
+    description: "Nothing.",
+}
 ];
