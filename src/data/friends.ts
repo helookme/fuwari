@@ -33,7 +33,7 @@ export const friends = [
   {
     name: "Arcwolf Blog",
     url: "https://www.arcwolf.top",
-    avatar: "https://www.arcwolf.top/assets/home/28.png"
+    avatar: "https://www.arcwolf.top/assets/home/28.png",
     description: "Nothing.",
 }
 ];
