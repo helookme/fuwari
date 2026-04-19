@@ -42,4 +42,10 @@ export const friends = [
     avatar: "https://cdn.cdn.yourlai.icu/img/logo/ava.png",
     description: "无 bug 是理想，调设备是日常",
   }
+  {
+    name: "UpXuu's Blog",
+    url: "https://upxuu.com",
+    avatar: "https://upxuu.com/images/20260214145619.jpg",
+    description: "逐光而上！",
+  }
 ];
