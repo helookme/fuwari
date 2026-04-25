@@ -47,5 +47,11 @@ export const friends = [
     url: "https://upxuu.com",
     avatar: "https://upxuu.com/images/20260214145619.jpg",
     description: "逐光而上！",
+  },
+  {
+    name: "爱吃猫的鱼",
+    url: "https://blog.talen.top",
+    avatar: "https://image.talen.top/20251229184705_wgsva7g9.png",
+    description: "前景可待 未来可期",
   }
 ];
