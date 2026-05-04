@@ -58,6 +58,18 @@ export const friends = [
     name: "水月的小窝",
     url: "https://chuishui.top",
     avatar: "https://esaimg.cdn1.vip/i/69f849450ed4c_1777879365.webp",
-    description: "没有人是笨蛋，大家都只会对喜欢的人用心|",
+    description: "没有人是笨蛋，大家都只会对喜欢的人用心",
+  }
+  {
+    name: "MoGuQAQ's Blog",
+    url: "https://blog.moguq.top",
+    avatar: "https://avatars.githubusercontent.com/u/67809394",
+    description: "---占位---",
+  }
+  {
+    name: "流欺の博客",
+    url: "https://blog.lqay.cn",
+    avatar: "https://tc.lqay.cn/LightPicture/2026/03/5f64e0f0f361e19c.png",
+    description: "嗯对就是个博客",
   }
 ];
