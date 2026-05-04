@@ -59,13 +59,13 @@ export const friends = [
     url: "https://chuishui.top",
     avatar: "https://esaimg.cdn1.vip/i/69f849450ed4c_1777879365.webp",
     description: "没有人是笨蛋，大家都只会对喜欢的人用心",
-  }
+  },
   {
     name: "MoGuQAQ's Blog",
     url: "https://blog.moguq.top",
     avatar: "https://avatars.githubusercontent.com/u/67809394",
     description: "---占位---",
-  }
+  },
   {
     name: "流欺の博客",
     url: "https://blog.lqay.cn",
