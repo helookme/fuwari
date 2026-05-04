@@ -53,5 +53,11 @@ export const friends = [
     url: "https://blog.talen.top",
     avatar: "https://image.talen.top/20251229184705_wgsva7g9.png",
     description: "前景可待 未来可期",
+  },
+  {
+    name: "水月的小窝",
+    url: "https://chuishui.top",
+    avatar: "https://esaimg.cdn1.vip/i/69f849450ed4c_1777879365.webp",
+    description: "没有人是笨蛋，大家都只会对喜欢的人用心|",
   }
 ];
