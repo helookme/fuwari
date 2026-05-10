@@ -1,0 +1,66 @@
+---
+// src/components/Popup.astro
+---
+
+<!-- 弹窗入口按钮（示例为头像） -->
+<button id="popup-trigger" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full border-2 overflow-hidden">
+  <img id="popup-trigger" class="w-full h-full object-cover" src="" alt="打开弹窗" />
+</button>
+
+<!-- 弹窗主体结构 -->
+<div
+  id="popup-overlay"
+  class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300"
+>
+  <div
+    id="popup-content"
+    class="fixed top-20 right-4 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-50 hidden transition-all duration-300"
+  >
+    <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+      RoseShop.Asia
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-6">
+      -----占位-----
+    </p>
+    <button
+      id="popup-close"
+      class="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition-opacity"
+    >
+      OK
+    </button>
+  </div>
+</div>
+
+<script>
+  // 等待 DOM 加载完成
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('popup-overlay');
+    const popup = document.getElementById('popup-content');
+    const closeBtn = document.getElementById('popup-close');
+    const trigger = document.getElementById('popup-trigger');
+
+    // 点击右上角头像或遮罩层打开/关闭弹窗
+    const togglePopup = (e) => {
+      e.stopPropagation();
+      const isHidden = popup.classList.contains('hidden');
+      if (isHidden) {
+        overlay.classList.remove('hidden');
+        popup.classList.remove('hidden');
+      } else {
+        overlay.classList.add('hidden');
+        popup.classList.add('hidden');
+      }
+    };
+
+    trigger?.addEventListener('click', togglePopup);
+    overlay?.addEventListener('click', togglePopup);
+    closeBtn?.addEventListener('click', togglePopup);
+
+    // 按 ESC 键关闭弹窗
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+        togglePopup(e);
+      }
+    });
+  });
+</script>
