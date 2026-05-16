@@ -2,97 +2,47 @@
 // src/components/Popup.astro
 ---
 
-<!-- 右上角铃铛图标按钮（点击可重新打开弹窗） -->
-<button
-  id="popup-trigger"
-  class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg hover:opacity-90 transition-opacity"
-  aria-label="通知弹窗"
->
-  <!-- 铃铛 SVG 图标 -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-    />
+<!-- 铃铛按钮（固定右上角） -->
+<button id="bell-btn" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg transition">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
   </svg>
 </button>
 
-<!-- 弹窗遮罩 -->
-<div
-  id="popup-overlay"
-  class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300"
-></div>
-
-<!-- 弹窗内容 -->
-<div
-  id="popup-content"
-  class="fixed top-20 right-4 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-50 hidden transition-all duration-300"
->
-  <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">
-    广告:RoseShop.Asia
-  </h2>
-  <p class="text-gray-600 dark:text-gray-400 mb-6">
-    我的世界Rose卡网—老牌卡网
+<!-- 弹窗对话框 -->
+<dialog id="welcome-dialog" class="fixed top-20 right-4 m-0 w-80 rounded-2xl shadow-2xl p-6 backdrop:bg-black/50 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+  <h2 class="text-xl font-bold mb-4">广告:RoseShop.Asia</h2>
+  <p class="mb-6 opacity-80">我的世界Rose卡网—老牌卡网
 各大客户端hyp/bjd等 黑卡
-热注入 全脱以及其他游戏外挂等 官方代理 值得信赖
-  </p>
-  <button
-    id="popup-close"
-    class="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition-opacity"
-  >
-    OK
-  </button>
-</div>
+热注入 全脱以及其他游戏外挂等 官方代理 值得信赖</p>
+  <form method="dialog">
+    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition">开始探索</button>
+  </form>
+</dialog>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('popup-overlay');
-    const popup = document.getElementById('popup-content');
-    const closeBtn = document.getElementById('popup-close');
-    const trigger = document.getElementById('popup-trigger');
+  const dialog = document.getElementById('welcome-dialog');
+  const bellBtn = document.getElementById('bell-btn');
 
-    const showPopup = () => {
-      overlay.classList.remove('hidden');
-      popup.classList.remove('hidden');
-    };
-
-    const hidePopup = () => {
-      overlay.classList.add('hidden');
-      popup.classList.add('hidden');
-    };
-
-    const togglePopup = (e) => {
-      e.stopPropagation();
-      if (popup.classList.contains('hidden')) {
-        showPopup();
-      } else {
-        hidePopup();
-      }
-    };
-
-    // 🔔 页面加载时自动打开弹窗
-    showPopup();
-
-    // 点击遮罩层关闭
-    overlay?.addEventListener('click', hidePopup);
-    // 点击“开始探索”按钮关闭
-    closeBtn?.addEventListener('click', hidePopup);
-    // 点击右上角铃铛切换弹窗（关闭后可再次打开）
-    trigger?.addEventListener('click', togglePopup);
-
-    // 按 ESC 键关闭
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
-        hidePopup();
-      }
-    });
+  // 页面加载后自动弹出
+  window.addEventListener('load', () => {
+    dialog.showModal();
   });
+
+  // 点击铃铛也可以重新打开（如果已关闭）
+  bellBtn.addEventListener('click', () => {
+    dialog.showModal();
+  });
+
+  // 点击遮罩层关闭（dialog 的 backdrop 点击会自动关闭，无需额外代码）
 </script>
+
+<style>
+  /* 确保弹窗样式与 Fuwari 融合 */
+  #welcome-dialog::backdrop {
+    background: rgba(0,0,0,0.5);
+  }
+  #welcome-dialog {
+    border: none;
+  }
+</style>
