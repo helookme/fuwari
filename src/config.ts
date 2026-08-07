@@ -120,7 +120,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 
 export const umamiConfig: UmamiConfig = {
        enable: true,
-       baseUrl: "https://umami.578113.xyz",
+       baseUrl: "http://umami.578113.xyz",
        shareId: "5ESTs8jIv3PziJdE",
        timezone: "Asia/Shanghai",
        
